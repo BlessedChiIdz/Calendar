@@ -1,0 +1,29 @@
+.CalendarMain{
+    height: 50%;
+    width: 40%;
+    position: absolute;
+    top: 10%;
+    left: 30%;
+}
+.YearContainer{
+    text-align: center;
+}
+.buttonYear{
+    display: inline-block;
+}
+.Year{
+    font-size: 2vw;
+    color: #33485e;
+    display: inline-block;
+}
+.MonthContainer{
+
+    text-align: center;
+    padding-bottom: 3%;
+}
+.Month{
+    /*width: 150px;*/
+    font-size: 2vw;
+    color: #33485e;
+    display: inline-block;
+}
