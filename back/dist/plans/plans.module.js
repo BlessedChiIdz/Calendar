@@ -6,32 +6,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UsersModule = void 0;
+exports.PlansModule = void 0;
 const common_1 = require("@nestjs/common");
-const users_controller_1 = require("./users.controller");
-const users_service_1 = require("./users.service");
+const plans_controller_1 = require("./plans.controller");
+const plans_service_1 = require("./plans.service");
 const sequelize_1 = require("@nestjs/sequelize");
-const users_model_1 = require("./users.model");
-const roles_model_1 = require("../roles/roles.model");
-const user_roles_model_1 = require("../roles/user-roles.model");
+const users_model_1 = require("../users/users.model");
+const plans_model_1 = require("./plans.model");
 const roles_module_1 = require("../roles/roles.module");
 const auth_module_1 = require("../auth/auth.module");
-const plans_model_1 = require("../plans/plans.model");
-let UsersModule = class UsersModule {
+let PlansModule = class PlansModule {
 };
-exports.UsersModule = UsersModule;
-exports.UsersModule = UsersModule = __decorate([
+exports.PlansModule = PlansModule;
+exports.PlansModule = PlansModule = __decorate([
     (0, common_1.Module)({
-        controllers: [users_controller_1.UsersController],
-        providers: [users_service_1.UsersService],
+        controllers: [plans_controller_1.PlansController],
+        providers: [plans_service_1.PlansService],
         imports: [
-            sequelize_1.SequelizeModule.forFeature([users_model_1.User, roles_model_1.Role, user_roles_model_1.UserRoles, plans_model_1.Plans]),
+            sequelize_1.SequelizeModule.forFeature([users_model_1.User, plans_model_1.Plans]),
             roles_module_1.RolesModule,
             (0, common_1.forwardRef)(() => auth_module_1.AuthModule)
         ],
-        exports: [
-            users_service_1.UsersService,
-        ]
     })
-], UsersModule);
-//# sourceMappingURL=users.module.js.map
+], PlansModule);
+//# sourceMappingURL=plans.module.js.map
