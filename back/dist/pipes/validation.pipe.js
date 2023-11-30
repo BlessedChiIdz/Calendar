@@ -16,7 +16,10 @@ let ValidationPipe = class ValidationPipe {
         const obj = (0, class_transformer_1.plainToClass)(metadata.metatype, value);
         const err = await (0, class_validator_1.validate)(obj);
         if (err.length) {
-            throw new validation_exception_1.ValidationException('');
+            let messages = err.map(err => {
+                return `${err.property} - ${Object.values(err.constraints).join(', ')}`;
+            });
+            throw new validation_exception_1.ValidationException(messages);
         }
         return value;
     }
