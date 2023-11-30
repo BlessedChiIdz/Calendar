@@ -16,23 +16,41 @@ exports.UsersService = void 0;
 const common_1 = require("@nestjs/common");
 const sequelize_1 = require("@nestjs/sequelize");
 const users_model_1 = require("./users.model");
+const roles_service_1 = require("../roles/roles.service");
 let UsersService = class UsersService {
-    constructor(userRepository) {
+    constructor(userRepository, roleService) {
         this.userRepository = userRepository;
+        this.roleService = roleService;
     }
     async createUser(dto) {
         const user = await this.userRepository.create(dto);
+        const role = await this.roleService.getRoleByValue("ADMIN");
+        await user.$set('roles', [role.id]);
+        user.roles = [role];
         return user;
     }
     async getAllUsers() {
-        const users = await this.userRepository.findAll();
+        const users = await this.userRepository.findAll({ include: { all: true } });
         return users;
+    }
+    async getUserByEmail(email) {
+        const user = await this.userRepository.findOne({ where: { email }, include: { all: true } });
+        return user;
+    }
+    async addRole(dto) {
+        const user = await this.userRepository.findByPk(dto.userId);
+        const role = await this.roleService.getRoleByValue(dto.value);
+        if (role && user) {
+            await user.$add('role', role.id);
+            return dto;
+        }
+        throw new common_1.HttpException('User or Role undefinde', common_1.HttpStatus.NOT_FOUND);
     }
 };
 exports.UsersService = UsersService;
 exports.UsersService = UsersService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, sequelize_1.InjectModel)(users_model_1.User)),
-    __metadata("design:paramtypes", [Object])
+    __metadata("design:paramtypes", [Object, roles_service_1.RolesService])
 ], UsersService);
 //# sourceMappingURL=users.service.js.map

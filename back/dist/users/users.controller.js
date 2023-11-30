@@ -14,8 +14,14 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
 const create_user_dto_1 = require("./dto/create-user.dto");
 const users_service_1 = require("./users.service");
+const users_model_1 = require("./users.model");
+const roles_auth_decorators_1 = require("../auth/roles-auth.decorators");
+const roles_guar_1 = require("../auth/roles.guar");
+const add_role_dto_1 = require("./dto/add-role.dto");
+const validation_pipe_1 = require("../pipes/validation.pipe");
 let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
@@ -26,9 +32,15 @@ let UsersController = class UsersController {
     getAll() {
         return this.usersService.getAllUsers();
     }
+    addRole(dto) {
+        return this.usersService.addRole(dto);
+    }
 };
 exports.UsersController = UsersController;
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'CreateUser' }),
+    (0, swagger_1.ApiResponse)({ status: 200, type: users_model_1.User }),
+    (0, common_1.UsePipes)(validation_pipe_1.ValidationPipe),
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -36,12 +48,28 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "create", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'GetAllUsers' }),
+    (0, swagger_1.ApiResponse)({ status: 200, type: [users_model_1.User] }),
+    (0, roles_auth_decorators_1.Roles)("ADMIN"),
+    (0, common_1.UseGuards)(roles_guar_1.RolesGuar),
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "getAll", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'SetRoleToUser' }),
+    (0, swagger_1.ApiResponse)({ status: 200 }),
+    (0, roles_auth_decorators_1.Roles)("ADMIN"),
+    (0, common_1.UseGuards)(roles_guar_1.RolesGuar),
+    (0, common_1.Post)('/role'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [add_role_dto_1.AddRoleDto]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "addRole", null);
 exports.UsersController = UsersController = __decorate([
+    (0, swagger_1.ApiTags)('Users'),
     (0, common_1.Controller)('users'),
     __metadata("design:paramtypes", [users_service_1.UsersService])
 ], UsersController);
