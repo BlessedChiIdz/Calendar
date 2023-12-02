@@ -40,4 +40,9 @@ export class UsersService {
         }
         throw new HttpException('User or Role undefinde',HttpStatus.NOT_FOUND)
     }
+    async getIdUserByEmail(email:string){
+        const user = await this.userRepository.findOne({where:{email},include:{all:true}})
+        return user.id;
+    }
+
 }

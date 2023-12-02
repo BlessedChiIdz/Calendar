@@ -23,7 +23,7 @@ __decorate([
 ], Plans.prototype, "id", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({ example: '13.01.2022', description: 'Date' }),
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING, unique: true, allowNull: false }),
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING, allowNull: false }),
     __metadata("design:type", String)
 ], Plans.prototype, "date", void 0);
 __decorate([
@@ -32,15 +32,22 @@ __decorate([
     __metadata("design:type", String)
 ], Plans.prototype, "description", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ example: 'guy1', description: 'who create request' }),
     (0, sequelize_typescript_1.ForeignKey)(() => users_model_1.User),
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER }),
     __metadata("design:type", Number)
-], Plans.prototype, "userId", void 0);
+], Plans.prototype, "userIdPost", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: 'guy2', description: 'who get or reject request' }),
+    (0, sequelize_typescript_1.ForeignKey)(() => users_model_1.User),
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER }),
+    __metadata("design:type", Number)
+], Plans.prototype, "userIdGet", void 0);
 __decorate([
     (0, sequelize_typescript_1.BelongsTo)(() => users_model_1.User),
     __metadata("design:type", users_model_1.User)
 ], Plans.prototype, "author", void 0);
 exports.Plans = Plans = __decorate([
-    (0, sequelize_typescript_1.Table)({ tableName: 'roles' })
+    (0, sequelize_typescript_1.Table)({ tableName: 'plans', createdAt: false, updatedAt: false })
 ], Plans);
 //# sourceMappingURL=plans.model.js.map

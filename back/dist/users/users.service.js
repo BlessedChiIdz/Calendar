@@ -46,6 +46,10 @@ let UsersService = class UsersService {
         }
         throw new common_1.HttpException('User or Role undefinde', common_1.HttpStatus.NOT_FOUND);
     }
+    async getIdUserByEmail(email) {
+        const user = await this.userRepository.findOne({ where: { email }, include: { all: true } });
+        return user.id;
+    }
 };
 exports.UsersService = UsersService;
 exports.UsersService = UsersService = __decorate([

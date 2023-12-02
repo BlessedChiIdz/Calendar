@@ -9,7 +9,7 @@ interface PlansAttrs{
 }
 
 
-@Table({tableName:'roles'})
+@Table({tableName:'plans',createdAt:false,updatedAt:false})
 
 export class Plans extends Model<Plans,PlansAttrs>{
     @ApiProperty({example:'1',description:'UniqueKey'})
@@ -17,7 +17,7 @@ export class Plans extends Model<Plans,PlansAttrs>{
     id:number;
 
     @ApiProperty({example:'13.01.2022',description:'Date'})
-    @Column({type:DataType.STRING,unique:true,allowNull:false})
+    @Column({type:DataType.STRING,allowNull:false})
     date:string;
 
 
@@ -25,9 +25,14 @@ export class Plans extends Model<Plans,PlansAttrs>{
     @Column({type:DataType.STRING,unique:false})
     description:string;
 
+    @ApiProperty({example:'guy1',description:'who create request'})
     @ForeignKey(()=>User)
     @Column({type:DataType.INTEGER})
-    userId:number;
+    userIdPost:number;
+    @ApiProperty({example:'guy2',description:'who get or reject request'})
+    @ForeignKey(()=>User)
+    @Column({type:DataType.INTEGER}) //not tested!!!!!!!!!!!!!!!!!!!!
+    userIdGet:number;
     @BelongsTo(()=>User)
     author: User;
 

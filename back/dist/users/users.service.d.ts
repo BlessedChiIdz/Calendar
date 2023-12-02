@@ -10,4 +10,5 @@ export declare class UsersService {
     getAllUsers(): Promise<User[]>;
     getUserByEmail(email: string): Promise<User>;
     addRole(dto: AddRoleDto): Promise<AddRoleDto>;
+    getIdUserByEmail(email: string): Promise<number>;
 }

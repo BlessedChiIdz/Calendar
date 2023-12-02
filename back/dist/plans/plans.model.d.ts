@@ -8,7 +8,8 @@ export declare class Plans extends Model<Plans, PlansAttrs> {
     id: number;
     date: string;
     description: string;
-    userId: number;
+    userIdPost: number;
+    userIdGet: number;
     author: User;
 }
 export {};

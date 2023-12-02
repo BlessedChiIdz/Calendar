@@ -6,23 +6,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PlansModule = void 0;
+exports.FriendsModule = void 0;
 const common_1 = require("@nestjs/common");
-const plans_controller_1 = require("./plans.controller");
-const plans_service_1 = require("./plans.service");
+const friends_controller_1 = require("./friends.controller");
+const friends_service_1 = require("./friends.service");
+const friends_model_1 = require("./friends.model");
 const sequelize_1 = require("@nestjs/sequelize");
-const users_model_1 = require("../users/users.model");
-const plans_model_1 = require("./plans.model");
-let PlansModule = class PlansModule {
+let FriendsModule = class FriendsModule {
 };
-exports.PlansModule = PlansModule;
-exports.PlansModule = PlansModule = __decorate([
+exports.FriendsModule = FriendsModule;
+exports.FriendsModule = FriendsModule = __decorate([
     (0, common_1.Module)({
-        controllers: [plans_controller_1.PlansController],
-        providers: [plans_service_1.PlansService],
+        controllers: [friends_controller_1.FriendsController],
+        providers: [friends_service_1.FriendsService],
         imports: [
-            sequelize_1.SequelizeModule.forFeature([users_model_1.User, plans_model_1.Plans]),
+            sequelize_1.SequelizeModule.forFeature([friends_model_1.Friends]),
         ],
     })
-], PlansModule);
-//# sourceMappingURL=plans.module.js.map
+], FriendsModule);
+//# sourceMappingURL=friends.module.js.map

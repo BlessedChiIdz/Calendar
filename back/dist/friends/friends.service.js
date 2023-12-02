@@ -12,23 +12,22 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PlansService = void 0;
+exports.FriendsService = void 0;
 const common_1 = require("@nestjs/common");
 const sequelize_1 = require("@nestjs/sequelize");
-const plans_model_1 = require("./plans.model");
-let PlansService = class PlansService {
-    constructor(plansRep) {
-        this.plansRep = plansRep;
+const friends_model_1 = require("./friends.model");
+let FriendsService = class FriendsService {
+    constructor(friendsRep) {
+        this.friendsRep = friendsRep;
     }
-    async creatPlan(dto) {
-        const plan = await this.plansRep.create(dto);
-        return plan;
+    async create(dto) {
+        const friend = await this.friendsRep.create(dto);
     }
 };
-exports.PlansService = PlansService;
-exports.PlansService = PlansService = __decorate([
+exports.FriendsService = FriendsService;
+exports.FriendsService = FriendsService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, sequelize_1.InjectModel)(plans_model_1.Plans)),
+    __param(0, (0, sequelize_1.InjectModel)(friends_model_1.Friends)),
     __metadata("design:paramtypes", [Object])
-], PlansService);
-//# sourceMappingURL=plans.service.js.map
+], FriendsService);
+//# sourceMappingURL=friends.service.js.map

@@ -14,8 +14,6 @@ import {AuthModule} from "../auth/auth.module";
   providers: [PlansService],
   imports:[
     SequelizeModule.forFeature([User,Plans]),
-    RolesModule,
-    forwardRef(()=>AuthModule)
   ],
 })
 export class PlansModule {}
