@@ -52,6 +52,7 @@ let FriendAwaitService = class FriendAwaitService {
                 user1Id: dto.user1Id
             }
         });
+        return friends;
     }
 };
 exports.FriendAwaitService = FriendAwaitService;

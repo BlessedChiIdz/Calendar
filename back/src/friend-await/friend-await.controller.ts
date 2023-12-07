@@ -1,8 +1,6 @@
 import {Body, Controller, Get, Post} from '@nestjs/common';
 import {FriendAwaitService} from "./friend-await.service";
-import {FriendDeleteDto, FriendsWDto} from "./dto/friends.dto";
-import {FriendsService} from "../friends/friends.service";
-import {FriendsDto} from "../friends/dto/friends.dto";
+import {FriendDeleteDto, FriendsWDto, User1Dto} from "./dto/friends.dto";
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import {FriendsW} from "./friend-await.model";
 @Controller('friend-await')
@@ -22,8 +20,8 @@ export class FriendAwaitController {
     }
     @ApiResponse({status:200,type:FriendsW})
     @Get('/get')
-    GetRequests(@Body() dto:FriendsWDto){
-        return
+    GetRequest(@Body() dto:User1Dto){
+        return this.friendWService.Get(dto)
     }
 
 }

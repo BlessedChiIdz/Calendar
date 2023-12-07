@@ -1,4 +1,4 @@
 export declare class FriendsDto {
-    user1Id: number;
-    user2Id: number;
+    readonly user1Id: number;
+    readonly user2Id: number;
 }

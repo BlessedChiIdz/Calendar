@@ -1,5 +1,5 @@
 import { Model } from "sequelize-typescript";
-import { User } from "../users/users.model";
+import { Friends } from "../friends/friends.model";
 interface PlansAttrs {
     date: string;
     description: string;
@@ -9,7 +9,7 @@ export declare class Plans extends Model<Plans, PlansAttrs> {
     date: string;
     description: string;
     userIdPost: number;
-    userIdGet: number;
-    author: User;
+    FriendsIdGet: number;
+    author: Friends;
 }
 export {};

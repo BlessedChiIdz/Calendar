@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import {InjectModel} from "@nestjs/sequelize";
 import {FriendsW} from "./friend-await.model";
-import {FriendsWDto} from "./dto/friends.dto";
+import {FriendsWDto, User1Dto} from "./dto/friends.dto";
 import {FriendsDto} from "../friends/dto/friends.dto";
 import {Friends} from "../friends/friends.model";
 import {FriendsService} from "../friends/friends.service";
@@ -39,11 +39,13 @@ export class FriendAwaitService {
         const friend = await this.friendMainTbService.create(datas)
         return friend
     }
-    async Get(dto:FriendsWDto){
+
+    async Get(dto:User1Dto){
         const friends:FriendsWDto[] = await this.friendW.findAll({
             where:{
                 user1Id:dto.user1Id
             }
         })
+        return friends
     }
 }

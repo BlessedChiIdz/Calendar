@@ -2,6 +2,7 @@ import {BelongsTo, BelongsToMany, Column, DataType, ForeignKey, Model, Table} fr
 import {User} from "../users/users.model";
 import {UserRoles} from "../roles/user-roles.model";
 import { ApiProperty } from "@nestjs/swagger";
+import {Friends} from "../friends/friends.model";
 
 interface PlansAttrs{
     date:string;
@@ -30,11 +31,11 @@ export class Plans extends Model<Plans,PlansAttrs>{
     @Column({type:DataType.INTEGER})
     userIdPost:number;
     @ApiProperty({example:'guy2',description:'who get or reject request'})
-    @ForeignKey(()=>User)
+    @ForeignKey(()=>Friends)
     @Column({type:DataType.INTEGER}) //not tested!!!!!!!!!!!!!!!!!!!!
-    userIdGet:number;
-    @BelongsTo(()=>User)
-    author: User;
+    FriendsIdGet:number;
+    @BelongsTo(()=>Friends)
+    author: Friends;
 
 
 }

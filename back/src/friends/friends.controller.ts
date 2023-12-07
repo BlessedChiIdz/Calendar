@@ -6,9 +6,4 @@ import {FriendsDto} from "./dto/friends.dto";
 export class FriendsController {
     constructor(private friendService: FriendsService) {
     }
-
-    @Post('/create')
-    create(@Body()dto: FriendsDto){
-        return this.friendService.create(dto)
-    }
 }

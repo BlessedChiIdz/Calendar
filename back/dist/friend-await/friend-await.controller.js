@@ -28,8 +28,8 @@ let FriendAwaitController = class FriendAwaitController {
     AddToMainTable(dto) {
         return this.friendWService.addToMainTB(dto.idForDel);
     }
-    GetRequests(dto) {
-        return;
+    GetRequest(dto) {
+        return this.friendWService.Get(dto);
     }
 };
 exports.FriendAwaitController = FriendAwaitController;
@@ -54,9 +54,9 @@ __decorate([
     (0, common_1.Get)('/get'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [friends_dto_1.FriendsWDto]),
+    __metadata("design:paramtypes", [friends_dto_1.User1Dto]),
     __metadata("design:returntype", void 0)
-], FriendAwaitController.prototype, "GetRequests", null);
+], FriendAwaitController.prototype, "GetRequest", null);
 exports.FriendAwaitController = FriendAwaitController = __decorate([
     (0, common_1.Controller)('friend-await'),
     __metadata("design:paramtypes", [friend_await_service_1.FriendAwaitService])
