@@ -11,4 +11,5 @@ export declare class FriendAwaitService {
     getById(id: number): Promise<FriendsW>;
     delete(idForDel: number): Promise<FriendsDto>;
     addToMainTB(idForDel: number): Promise<Friends>;
+    Get(dto: FriendsWDto): Promise<void>;
 }

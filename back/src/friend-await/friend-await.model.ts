@@ -11,6 +11,7 @@ export class FriendsW extends Model<FriendsW,FriendsAwait>{
     @ApiProperty({example:'1',description:'UniqueKey'})
     @Column({type:DataType.INTEGER,unique:true,autoIncrement:true,primaryKey:true})
     id:number;
+
     @ApiProperty({example:'13',description:'FirstUser'})
     @Column({type:DataType.INTEGER,allowNull:false})
     user1Id:number;

@@ -46,6 +46,13 @@ let FriendAwaitService = class FriendAwaitService {
         const friend = await this.friendMainTbService.create(datas);
         return friend;
     }
+    async Get(dto) {
+        const friends = await this.friendW.findAll({
+            where: {
+                user1Id: dto.user1Id
+            }
+        });
+    }
 };
 exports.FriendAwaitService = FriendAwaitService;
 exports.FriendAwaitService = FriendAwaitService = __decorate([

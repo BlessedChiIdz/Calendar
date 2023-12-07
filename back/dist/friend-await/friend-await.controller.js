@@ -16,6 +16,8 @@ exports.FriendAwaitController = void 0;
 const common_1 = require("@nestjs/common");
 const friend_await_service_1 = require("./friend-await.service");
 const friends_dto_1 = require("./dto/friends.dto");
+const swagger_1 = require("@nestjs/swagger");
+const friend_await_model_1 = require("./friend-await.model");
 let FriendAwaitController = class FriendAwaitController {
     constructor(friendWService) {
         this.friendWService = friendWService;
@@ -26,9 +28,13 @@ let FriendAwaitController = class FriendAwaitController {
     AddToMainTable(dto) {
         return this.friendWService.addToMainTB(dto.idForDel);
     }
+    GetRequests(dto) {
+        return;
+    }
 };
 exports.FriendAwaitController = FriendAwaitController;
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'CreateTempFriend' }),
     (0, common_1.Post)('/create'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -36,12 +42,21 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], FriendAwaitController.prototype, "create", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'AddTempFriendToMainFriendTable' }),
     (0, common_1.Post)('/addToMainTb'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [friends_dto_1.FriendDeleteDto]),
     __metadata("design:returntype", void 0)
 ], FriendAwaitController.prototype, "AddToMainTable", null);
+__decorate([
+    (0, swagger_1.ApiResponse)({ status: 200, type: friend_await_model_1.FriendsW }),
+    (0, common_1.Get)('/get'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [friends_dto_1.FriendsWDto]),
+    __metadata("design:returntype", void 0)
+], FriendAwaitController.prototype, "GetRequests", null);
 exports.FriendAwaitController = FriendAwaitController = __decorate([
     (0, common_1.Controller)('friend-await'),
     __metadata("design:paramtypes", [friend_await_service_1.FriendAwaitService])
