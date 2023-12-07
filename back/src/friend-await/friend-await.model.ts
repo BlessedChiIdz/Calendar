@@ -1,12 +1,12 @@
 import { ApiProperty } from "@nestjs/swagger";
 import {Column, DataType, Model, Table} from "sequelize-typescript";
 
-interface FriendsAttr{
+interface FriendsAwait{
     user1Id:number;
     user2Id:number;
 }
-@Table({tableName:'Friends',createdAt:false,updatedAt:false})
-export class Friends extends Model<Friends,FriendsAttr>{
+@Table({tableName:'FriendsAwait',createdAt:false,updatedAt:false})
+export class FriendsW extends Model<FriendsW,FriendsAwait>{
 
     @ApiProperty({example:'1',description:'UniqueKey'})
     @Column({type:DataType.INTEGER,unique:true,autoIncrement:true,primaryKey:true})
@@ -18,4 +18,5 @@ export class Friends extends Model<Friends,FriendsAttr>{
     @ApiProperty({example:'13',description:'SecondUser'})
     @Column({type:DataType.INTEGER,allowNull:false})
     user2Id:number;
+
 }

@@ -14,5 +14,8 @@ import {Plans} from "../plans/plans.model";
   imports:[
     SequelizeModule.forFeature([Friends]),
   ],
+  exports:[
+    FriendsService
+  ]
 })
 export class FriendsModule {}

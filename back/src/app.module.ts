@@ -12,6 +12,7 @@ import { PlansModule } from './plans/plans.module';
 import {Plans} from "./plans/plans.model";
 import { FriendsModule } from './friends/friends.module';
 import {Friends} from "./friends/friends.model";
+import {FriendAwaitModule} from "./friend-await/friend-await.module";
 
 @Module({
     controllers: [],
@@ -35,6 +36,7 @@ import {Friends} from "./friends/friends.model";
         AuthModule,
         PlansModule,
         FriendsModule,
+        FriendAwaitModule,
     ]
 })
 export class  AppModule{}

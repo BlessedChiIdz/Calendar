@@ -22,6 +22,9 @@ exports.FriendsModule = FriendsModule = __decorate([
         imports: [
             sequelize_1.SequelizeModule.forFeature([friends_model_1.Friends]),
         ],
+        exports: [
+            friends_service_1.FriendsService
+        ]
     })
 ], FriendsModule);
 //# sourceMappingURL=friends.module.js.map

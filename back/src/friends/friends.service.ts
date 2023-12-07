@@ -12,5 +12,6 @@ export class FriendsService {
 
     async create(dto:FriendsDto){
         const friend = await this.friendsRep.create(dto)
+        return friend
     }
 }

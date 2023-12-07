@@ -20,6 +20,7 @@ const plans_module_1 = require("./plans/plans.module");
 const plans_model_1 = require("./plans/plans.model");
 const friends_module_1 = require("./friends/friends.module");
 const friends_model_1 = require("./friends/friends.model");
+const friend_await_module_1 = require("./friend-await/friend-await.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -46,6 +47,7 @@ exports.AppModule = AppModule = __decorate([
             auth_module_1.AuthModule,
             plans_module_1.PlansModule,
             friends_module_1.FriendsModule,
+            friend_await_module_1.FriendAwaitModule,
         ]
     })
 ], AppModule);

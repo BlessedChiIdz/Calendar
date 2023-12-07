@@ -22,6 +22,7 @@ let FriendsService = class FriendsService {
     }
     async create(dto) {
         const friend = await this.friendsRep.create(dto);
+        return friend;
     }
 };
 exports.FriendsService = FriendsService;

@@ -9,28 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Friends = void 0;
+exports.FriendsW = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const sequelize_typescript_1 = require("sequelize-typescript");
-let Friends = class Friends extends sequelize_typescript_1.Model {
+let FriendsW = class FriendsW extends sequelize_typescript_1.Model {
 };
-exports.Friends = Friends;
+exports.FriendsW = FriendsW;
 __decorate([
     (0, swagger_1.ApiProperty)({ example: '1', description: 'UniqueKey' }),
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true }),
     __metadata("design:type", Number)
-], Friends.prototype, "id", void 0);
+], FriendsW.prototype, "id", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({ example: '13', description: 'FirstUser' }),
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER, allowNull: false }),
     __metadata("design:type", Number)
-], Friends.prototype, "user1Id", void 0);
+], FriendsW.prototype, "user1Id", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({ example: '13', description: 'SecondUser' }),
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER, allowNull: false }),
     __metadata("design:type", Number)
-], Friends.prototype, "user2Id", void 0);
-exports.Friends = Friends = __decorate([
-    (0, sequelize_typescript_1.Table)({ tableName: 'Friends', createdAt: false, updatedAt: false })
-], Friends);
-//# sourceMappingURL=friends.model.js.map
+], FriendsW.prototype, "user2Id", void 0);
+exports.FriendsW = FriendsW = __decorate([
+    (0, sequelize_typescript_1.Table)({ tableName: 'FriendsAwait', createdAt: false, updatedAt: false })
+], FriendsW);
+//# sourceMappingURL=friends-await.model.js.map
