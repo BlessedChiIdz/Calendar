@@ -3,5 +3,6 @@ import { PlansDto } from "./dto/plans.dto";
 export declare class PlansController {
     private plansService;
     constructor(plansService: PlansService);
-    create(dto: PlansDto): Promise<import("./plans.model").Plans>;
+    create(dto: PlansDto): Promise<import("./plans.model").Plan>;
+    find(value: string): Promise<void>;
 }

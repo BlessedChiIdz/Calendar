@@ -1,6 +1,6 @@
 import { Model } from "sequelize-typescript";
 import { Role } from "../roles/roles.model";
-import { Plans } from "../plans/plans.model";
+import { Plan } from "../plans/plans.model";
 interface UserAttrs {
     email: string;
     password: string;
@@ -12,6 +12,6 @@ export declare class User extends Model<User, UserAttrs> {
     banned: boolean;
     banReason: string;
     roles: Role[];
-    plans: Plans[];
+    plans: Plan[];
 }
 export {};

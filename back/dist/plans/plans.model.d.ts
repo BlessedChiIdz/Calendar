@@ -1,15 +1,13 @@
 import { Model } from "sequelize-typescript";
-import { Friends } from "../friends/friends.model";
+import { User } from "../users/users.model";
 interface PlansAttrs {
     date: string;
     description: string;
 }
-export declare class Plans extends Model<Plans, PlansAttrs> {
+export declare class Plan extends Model<Plan, PlansAttrs> {
     id: number;
     date: string;
     description: string;
-    userIdPost: number;
-    FriendsIdGet: number;
-    author: Friends;
+    users: User[];
 }
 export {};

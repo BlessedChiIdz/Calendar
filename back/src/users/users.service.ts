@@ -4,12 +4,14 @@ import {User} from "./users.model";
 import {CreateUserDto} from "./dto/create-user.dto";
 import {RolesService} from "../roles/roles.service";
 import {AddRoleDto} from "./dto/add-role.dto";
+import {UserPlans} from "../plans/user-plans.model";
 
 @Injectable()
 export class UsersService {
 
     constructor(@InjectModel(User) private userRepository:typeof User,
-                private roleService:RolesService) {
+                private roleService:RolesService,
+                ) {
     }
 
     async createUser(dto: CreateUserDto){
@@ -40,9 +42,12 @@ export class UsersService {
         }
         throw new HttpException('User or Role undefinde',HttpStatus.NOT_FOUND)
     }
+
     async getIdUserByEmail(email:string){
         const user = await this.userRepository.findOne({where:{email},include:{all:true}})
         return user.id;
     }
+
+
 
 }

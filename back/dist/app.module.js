@@ -21,6 +21,7 @@ const plans_model_1 = require("./plans/plans.model");
 const friends_module_1 = require("./friends/friends.module");
 const friends_model_1 = require("./friends/friends.model");
 const friend_await_module_1 = require("./friend-await/friend-await.module");
+const user_plans_model_1 = require("./plans/user-plans.model");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -39,7 +40,7 @@ exports.AppModule = AppModule = __decorate([
                 username: process.env.POSTGRES_USER,
                 password: process.env.POSTGRES_PASSWORD,
                 database: process.env.POSTGRES_DB,
-                models: [users_model_1.User, roles_model_1.Role, user_roles_model_1.UserRoles, plans_model_1.Plans, friends_model_1.Friends],
+                models: [users_model_1.User, roles_model_1.Role, user_roles_model_1.UserRoles, plans_model_1.Plan, friends_model_1.Friends, user_plans_model_1.UserPlans],
                 autoLoadModels: true,
             }),
             users_module_1.UsersModule,

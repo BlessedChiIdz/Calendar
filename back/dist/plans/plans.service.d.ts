@@ -1,7 +1,8 @@
 import { PlansDto } from "./dto/plans.dto";
-import { Plans } from "./plans.model";
+import { Plan } from "./plans.model";
 export declare class PlansService {
     private plansRep;
-    constructor(plansRep: typeof Plans);
-    creatPlan(dto: PlansDto): Promise<Plans>;
+    constructor(plansRep: typeof Plan);
+    creatPlan(dto: PlansDto): Promise<Plan>;
+    findPlans(value: string): Promise<void>;
 }

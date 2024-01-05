@@ -15,6 +15,7 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const roles_model_1 = require("../roles/roles.model");
 const user_roles_model_1 = require("../roles/user-roles.model");
 const plans_model_1 = require("../plans/plans.model");
+const user_plans_model_1 = require("../plans/user-plans.model");
 let User = class User extends sequelize_typescript_1.Model {
 };
 exports.User = User;
@@ -48,7 +49,7 @@ __decorate([
     __metadata("design:type", Array)
 ], User.prototype, "roles", void 0);
 __decorate([
-    (0, sequelize_typescript_1.HasMany)(() => plans_model_1.Plans),
+    (0, sequelize_typescript_1.BelongsToMany)(() => plans_model_1.Plan, () => user_plans_model_1.UserPlans),
     __metadata("design:type", Array)
 ], User.prototype, "plans", void 0);
 exports.User = User = __decorate([

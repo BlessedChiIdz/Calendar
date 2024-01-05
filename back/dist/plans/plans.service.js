@@ -24,11 +24,14 @@ let PlansService = class PlansService {
         const plan = await this.plansRep.create(dto);
         return plan;
     }
+    async findPlans(value) {
+        const plans = await this.plansRep.findAll({ where: { value } });
+    }
 };
 exports.PlansService = PlansService;
 exports.PlansService = PlansService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, sequelize_1.InjectModel)(plans_model_1.Plans)),
+    __param(0, (0, sequelize_1.InjectModel)(plans_model_1.Plan)),
     __metadata("design:paramtypes", [Object])
 ], PlansService);
 //# sourceMappingURL=plans.service.js.map

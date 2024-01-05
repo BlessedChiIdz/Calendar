@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import {InjectModel} from "@nestjs/sequelize";
 import {Friends} from "./friends.model";
-import {Plans} from "../plans/plans.model";
+import {Plan} from "../plans/plans.model";
 import {FriendsDto} from "./dto/friends.dto";
 
 @Injectable()

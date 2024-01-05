@@ -9,10 +9,11 @@ import {Role} from "./roles/roles.model";
 import {UserRoles} from "./roles/user-roles.model";
 import { AuthModule } from './auth/auth.module';
 import { PlansModule } from './plans/plans.module';
-import {Plans} from "./plans/plans.model";
+import {Plan} from "./plans/plans.model";
 import { FriendsModule } from './friends/friends.module';
 import {Friends} from "./friends/friends.model";
 import {FriendAwaitModule} from "./friend-await/friend-await.module";
+import {UserPlans} from "./plans/user-plans.model";
 
 @Module({
     controllers: [],
@@ -28,7 +29,7 @@ import {FriendAwaitModule} from "./friend-await/friend-await.module";
             username: process.env.POSTGRES_USER,
             password: process.env.POSTGRES_PASSWORD,
             database: process.env.POSTGRES_DB,
-            models: [User,Role,UserRoles,Plans,Friends],
+            models: [User,Role,UserRoles,Plan,Friends,UserPlans],
             autoLoadModels: true,
         }),
         UsersModule,

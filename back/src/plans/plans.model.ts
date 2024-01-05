@@ -3,16 +3,16 @@ import {User} from "../users/users.model";
 import {UserRoles} from "../roles/user-roles.model";
 import { ApiProperty } from "@nestjs/swagger";
 import {Friends} from "../friends/friends.model";
+import {UserPlans} from "./user-plans.model";
 
 interface PlansAttrs{
     date:string;
     description:string;
 }
 
-
 @Table({tableName:'plans',createdAt:false,updatedAt:false})
 
-export class Plans extends Model<Plans,PlansAttrs>{
+export class Plan extends Model<Plan,PlansAttrs>{
     @ApiProperty({example:'1',description:'UniqueKey'})
     @Column({type:DataType.INTEGER,unique:true,autoIncrement:true,primaryKey:true})
     id:number;
@@ -26,16 +26,6 @@ export class Plans extends Model<Plans,PlansAttrs>{
     @Column({type:DataType.STRING,unique:false})
     description:string;
 
-    @ApiProperty({example:'guy1',description:'who create request'})
-    @ForeignKey(()=>User)
-    @Column({type:DataType.INTEGER})
-    userIdPost:number;
-    @ApiProperty({example:'guy2',description:'who get or reject request'})
-    @ForeignKey(()=>Friends)
-    @Column({type:DataType.INTEGER}) //not tested!!!!!!!!!!!!!!!!!!!!
-    FriendsIdGet:number;
-    @BelongsTo(()=>Friends)
-    author: Friends;
-
-
+    @BelongsToMany(()=>User,()=>UserPlans)
+    users:User[];
 }

@@ -9,28 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FriendsW = void 0;
-const swagger_1 = require("@nestjs/swagger");
+exports.UserPlans = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
-let FriendsW = class FriendsW extends sequelize_typescript_1.Model {
+const users_model_1 = require("../users/users.model");
+const plans_model_1 = require("./plans.model");
+let UserPlans = class UserPlans extends sequelize_typescript_1.Model {
 };
-exports.FriendsW = FriendsW;
+exports.UserPlans = UserPlans;
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: '1', description: 'UniqueKey' }),
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true }),
     __metadata("design:type", Number)
-], FriendsW.prototype, "id", void 0);
+], UserPlans.prototype, "id", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: '13', description: 'FirstUser' }),
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER, allowNull: false }),
+    (0, sequelize_typescript_1.ForeignKey)(() => plans_model_1.Plan),
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER }),
     __metadata("design:type", Number)
-], FriendsW.prototype, "user1Id", void 0);
+], UserPlans.prototype, "planId", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: '13', description: 'SecondUser' }),
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER, allowNull: false }),
+    (0, sequelize_typescript_1.ForeignKey)(() => users_model_1.User),
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER }),
     __metadata("design:type", Number)
-], FriendsW.prototype, "user2Id", void 0);
-exports.FriendsW = FriendsW = __decorate([
-    (0, sequelize_typescript_1.Table)({ tableName: 'FriendsAwait', createdAt: false, updatedAt: false })
-], FriendsW);
-//# sourceMappingURL=friends.model.js.map
+], UserPlans.prototype, "userId", void 0);
+exports.UserPlans = UserPlans = __decorate([
+    (0, sequelize_typescript_1.Table)({ tableName: 'userPlans', createdAt: false, updatedAt: false })
+], UserPlans);
+//# sourceMappingURL=user-plans.model.js.map
