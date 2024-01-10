@@ -4,5 +4,5 @@ export declare class PlansService {
     private plansRep;
     constructor(plansRep: typeof Plan);
     creatPlan(dto: PlansDto): Promise<Plan>;
-    findPlans(value: string): Promise<void>;
+    findPlans(value: string): Promise<Plan[]>;
 }

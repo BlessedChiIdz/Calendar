@@ -35,6 +35,9 @@ let UsersController = class UsersController {
     addRole(dto) {
         return this.usersService.addRole(dto);
     }
+    Link(dto) {
+        return this.usersService.linkPlanToAllFriends(dto);
+    }
 };
 exports.UsersController = UsersController;
 __decorate([
@@ -68,6 +71,13 @@ __decorate([
     __metadata("design:paramtypes", [add_role_dto_1.AddRoleDto]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "addRole", null);
+__decorate([
+    (0, common_1.Post)('/link'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "Link", null);
 exports.UsersController = UsersController = __decorate([
     (0, swagger_1.ApiTags)('Users'),
     (0, common_1.Controller)('users'),

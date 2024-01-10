@@ -14,4 +14,8 @@ export class FriendsService {
         const friend = await this.friendsRep.create(dto)
         return friend
     }
+    async getAll(mainUserId:number){
+        const friends:Friends[] = await this.friendsRep.findAll({where:{user1Id:mainUserId}})
+        return friends;
+    }
 }

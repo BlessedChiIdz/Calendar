@@ -4,4 +4,5 @@ export declare class FriendsService {
     private friendsRep;
     constructor(friendsRep: typeof Friends);
     create(dto: FriendsDto): Promise<Friends>;
+    getAll(mainUserId: number): Promise<Friends[]>;
 }

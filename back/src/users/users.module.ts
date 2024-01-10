@@ -10,6 +10,7 @@ import {AuthModule} from "../auth/auth.module";
 import {Plan} from "../plans/plans.model";
 import {UserPlans} from "../plans/user-plans.model";
 import {PlansModule} from "../plans/plans.module";
+import {FriendsModule} from "../friends/friends.module";
 
 @Module({
   controllers: [UsersController],
@@ -17,6 +18,7 @@ import {PlansModule} from "../plans/plans.module";
   imports:[
       SequelizeModule.forFeature([User,Role,UserRoles,Plan,UserPlans]),
       RolesModule,
+      FriendsModule,
       forwardRef(()=>AuthModule)
   ],
     exports:[

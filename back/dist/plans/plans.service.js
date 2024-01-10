@@ -26,6 +26,7 @@ let PlansService = class PlansService {
     }
     async findPlans(value) {
         const plans = await this.plansRep.findAll({ where: { value } });
+        return plans;
     }
 };
 exports.PlansService = PlansService;

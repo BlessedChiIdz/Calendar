@@ -23,9 +23,6 @@ let PlansController = class PlansController {
     create(dto) {
         return this.plansService.creatPlan(dto);
     }
-    find(value) {
-        return this.plansService.findPlans(value);
-    }
 };
 exports.PlansController = PlansController;
 __decorate([
@@ -35,13 +32,6 @@ __decorate([
     __metadata("design:paramtypes", [plans_dto_1.PlansDto]),
     __metadata("design:returntype", void 0)
 ], PlansController.prototype, "create", null);
-__decorate([
-    (0, common_1.Get)('/find'),
-    __param(0, (0, common_1.Param)('value')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], PlansController.prototype, "find", null);
 exports.PlansController = PlansController = __decorate([
     (0, common_1.Controller)('plans'),
     __metadata("design:paramtypes", [plans_service_1.PlansService])

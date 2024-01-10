@@ -24,6 +24,10 @@ let FriendsService = class FriendsService {
         const friend = await this.friendsRep.create(dto);
         return friend;
     }
+    async getAll(mainUserId) {
+        const friends = await this.friendsRep.findAll({ where: { user1Id: mainUserId } });
+        return friends;
+    }
 };
 exports.FriendsService = FriendsService;
 exports.FriendsService = FriendsService = __decorate([

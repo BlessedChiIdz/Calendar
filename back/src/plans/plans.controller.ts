@@ -12,8 +12,8 @@ export class PlansController {
     create(@Body() dto:PlansDto){
         return this.plansService.creatPlan(dto)
     }
-    @Get('/find')
-    find(@Param('value') value:string){
-        return this.plansService.findPlans(value);
-    }
+    // @Get('/find')
+    // find(@Param('value') value:string){ //err
+    //     return this.plansService.findPlans(value);
+    // }
 }

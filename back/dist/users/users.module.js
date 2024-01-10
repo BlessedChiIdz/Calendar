@@ -18,6 +18,7 @@ const roles_module_1 = require("../roles/roles.module");
 const auth_module_1 = require("../auth/auth.module");
 const plans_model_1 = require("../plans/plans.model");
 const user_plans_model_1 = require("../plans/user-plans.model");
+const friends_module_1 = require("../friends/friends.module");
 let UsersModule = class UsersModule {
 };
 exports.UsersModule = UsersModule;
@@ -28,6 +29,7 @@ exports.UsersModule = UsersModule = __decorate([
         imports: [
             sequelize_1.SequelizeModule.forFeature([users_model_1.User, roles_model_1.Role, user_roles_model_1.UserRoles, plans_model_1.Plan, user_plans_model_1.UserPlans]),
             roles_module_1.RolesModule,
+            friends_module_1.FriendsModule,
             (0, common_1.forwardRef)(() => auth_module_1.AuthModule)
         ],
         exports: [
