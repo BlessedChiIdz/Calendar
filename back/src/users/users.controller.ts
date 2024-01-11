@@ -42,8 +42,5 @@ export class UsersController {
         return this.usersService.addRole(dto);
     }
 
-    @Post('/link')
-    Link(@Body() dto:CreateUserDto){
-        return this.usersService.linkPlanToAllFriends(dto);
-    }
+
 }

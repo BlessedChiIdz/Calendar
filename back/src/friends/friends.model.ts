@@ -1,5 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
-import {Column, DataType, Model, Table} from "sequelize-typescript";
+import {BelongsToMany, Column, DataType, Model, Table} from "sequelize-typescript";
+import {Plan} from "../plans/plans.model";
+import {UserPlans} from "../plans/user-plans.model";
 
 interface FriendsAttr{
     user1Id:number;
@@ -18,4 +20,7 @@ export class Friends extends Model<Friends,FriendsAttr>{
     @ApiProperty({example:'13',description:'SecondUser'})
     @Column({type:DataType.INTEGER,allowNull:false})
     user2Id:number;
+
+    @BelongsToMany(()=>Plan,()=>UserPlans)
+    plans: Plan[];
 }

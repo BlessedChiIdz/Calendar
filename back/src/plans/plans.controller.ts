@@ -1,6 +1,6 @@
 import {Body, Controller, Get, Param, Post} from '@nestjs/common';
 import {PlansService} from "./plans.service";
-import {PlansDto} from "./dto/plans.dto";
+import {PlansDto, PlanToFriendDto} from "./dto/plans.dto";
 
 @Controller('plans')
 export class PlansController {
@@ -16,4 +16,8 @@ export class PlansController {
     // find(@Param('value') value:string){ //err
     //     return this.plansService.findPlans(value);
     // }
+    @Post('/planToAllFriends')
+    planToAllFriends(@Body() dto:PlanToFriendDto){
+        return this.plansService.linkPlanToAllFriends(dto);
+    }
 }

@@ -39,6 +39,5 @@ export class User extends Model<User,UserAttrs>{
     @BelongsToMany(()=>Role,()=>UserRoles)
     roles:Role[];
 
-    @BelongsToMany(()=>Plan,()=>UserPlans)
-    plans: Plan[];
+
 }

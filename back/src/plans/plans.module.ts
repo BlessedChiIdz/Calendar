@@ -9,12 +9,15 @@ import {Plan} from "./plans.model";
 import {RolesModule} from "../roles/roles.module";
 import {AuthModule} from "../auth/auth.module";
 import {UserPlans} from "./user-plans.model";
+import {FriendsModule} from "../friends/friends.module";
+import {Friends} from "../friends/friends.model";
 
 @Module({
   controllers: [PlansController],
   providers: [PlansService],
   imports:[
     SequelizeModule.forFeature([User,Plan,UserPlans]),
+    FriendsModule,
   ],
 })
 export class PlansModule {}

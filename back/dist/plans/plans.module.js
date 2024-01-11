@@ -14,6 +14,7 @@ const sequelize_1 = require("@nestjs/sequelize");
 const users_model_1 = require("../users/users.model");
 const plans_model_1 = require("./plans.model");
 const user_plans_model_1 = require("./user-plans.model");
+const friends_module_1 = require("../friends/friends.module");
 let PlansModule = class PlansModule {
 };
 exports.PlansModule = PlansModule;
@@ -23,6 +24,7 @@ exports.PlansModule = PlansModule = __decorate([
         providers: [plans_service_1.PlansService],
         imports: [
             sequelize_1.SequelizeModule.forFeature([users_model_1.User, plans_model_1.Plan, user_plans_model_1.UserPlans]),
+            friends_module_1.FriendsModule,
         ],
     })
 ], PlansModule);

@@ -8,5 +8,4 @@ export declare class UsersController {
     create(userDto: CreateUserDto): Promise<User>;
     getAll(): Promise<User[]>;
     addRole(dto: AddRoleDto): Promise<AddRoleDto>;
-    Link(dto: CreateUserDto): Promise<void>;
 }
