@@ -58,17 +58,20 @@ let FriendAwaitService = class FriendAwaitService {
         });
     }
     async addToMainTbSomeUsers(ids) {
-        ids.map(async (id) => {
-            const deleted = await this.delete(id);
-            let friendsM = [];
-            deleted.forEach(function (friend, ndx) {
-                const temp = new friends_dto_1.FriendsWDto(friend.user1Id, friend.user2Id);
-                friendsM[ndx] = temp;
-            });
-            friendsM.map((fr) => {
-                this.friendMainTbService.create(fr);
-            });
+        ids.map(async (id, ndx) => {
+            const deleted = await this.deleteSome(id);
+            const friendA = new friends_dto_1.FriendsWDto(deleted.user1Id, deleted.user2Id);
+            this.friendMainTbService.create(friendA);
         });
+    }
+    async deleteSome(id) {
+        const man = await this.friendW.findByPk(id);
+        this.friendW.destroy({
+            where: {
+                id: id
+            }
+        });
+        return man;
     }
 };
 exports.FriendAwaitService = FriendAwaitService;

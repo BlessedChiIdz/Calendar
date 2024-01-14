@@ -10,4 +10,5 @@ export declare class FriendAwaitService {
     delete(idForDel: number): Promise<FriendsW[]>;
     addToMainTBAllAwait(idForDel: number): Promise<void>;
     addToMainTbSomeUsers(ids: number[]): Promise<void>;
+    deleteSome(id: number): Promise<FriendsW>;
 }

@@ -50,16 +50,22 @@ export class FriendAwaitService {
         })
     }
     async addToMainTbSomeUsers(ids:number[]){
-        ids.map(async (id)=>{
-            const deleted:FriendsW[] = await this.delete(id);
-            let friendsM:FriendsWDto[] = [];
-            deleted.forEach(function (friend,ndx){
-                const temp:FriendsWDto = new FriendsWDto(friend.user1Id,friend.user2Id);
-                friendsM[ndx] = temp;
-            })
-            friendsM.map( (fr)=>{
-                this.friendMainTbService.create(fr);
-            })
+        ids.map(async (id,ndx)=>{
+            const deleted:FriendsW = await this.deleteSome(id);
+            // let friendsM:FriendsWDto[] = [];
+            // const temp:FriendsWDto = new FriendsWDto(deleted.user1Id,deleted.user2Id);
+            // friendsM[ndx] = temp;
+            const friendA = new FriendsWDto(deleted.user1Id,deleted.user2Id);
+            this.friendMainTbService.create(friendA);
         })
+    }
+    async deleteSome(id:number):Promise<FriendsW>{
+        const man:FriendsW = await this.friendW.findByPk(id);
+        this.friendW.destroy({
+            where:{
+                id:id
+            }
+        })
+        return man;
     }
 }
