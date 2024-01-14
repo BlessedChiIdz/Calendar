@@ -16,6 +16,7 @@ exports.FriendAwaitService = void 0;
 const common_1 = require("@nestjs/common");
 const sequelize_1 = require("@nestjs/sequelize");
 const friend_await_model_1 = require("./friend-await.model");
+const friends_dto_1 = require("./dto/friends.dto");
 const friends_service_1 = require("../friends/friends.service");
 let FriendAwaitService = class FriendAwaitService {
     constructor(friendW, friendMainTbService) {
@@ -27,32 +28,47 @@ let FriendAwaitService = class FriendAwaitService {
         return friendW;
     }
     async getById(id) {
-        const friend = await this.friendW.findByPk(id);
+        const friend = await this.friendW.findAll({
+            where: {
+                user1Id: id,
+            }
+        });
         return friend;
     }
     async delete(idForDel) {
         const friend = await this.getById(idForDel);
-        await this.friendW.destroy({ where: {
-                id: idForDel
-            } });
-        return friend;
-    }
-    async addToMainTB(idForDel) {
-        const deleted = await this.delete(idForDel);
-        const datas = {
-            user1Id: deleted.user1Id,
-            user2Id: deleted.user2Id
-        };
-        const friend = await this.friendMainTbService.create(datas);
-        return friend;
-    }
-    async Get(dto) {
-        const friends = await this.friendW.findAll({
-            where: {
-                user1Id: dto.user1Id
-            }
+        friend.map((fr) => {
+            this.friendW.destroy({
+                where: {
+                    id: fr.id
+                }
+            });
         });
-        return friends;
+        return friend;
+    }
+    async addToMainTBAllAwait(idForDel) {
+        const deleted = await this.delete(idForDel);
+        let friendsM = [];
+        deleted.forEach(function (friend, ndx) {
+            const temp = new friends_dto_1.FriendsWDto(friend.user1Id, friend.user2Id);
+            friendsM[ndx] = temp;
+        });
+        friendsM.map((fr) => {
+            this.friendMainTbService.create(fr);
+        });
+    }
+    async addToMainTbSomeUsers(ids) {
+        ids.map(async (id) => {
+            const deleted = await this.delete(id);
+            let friendsM = [];
+            deleted.forEach(function (friend, ndx) {
+                const temp = new friends_dto_1.FriendsWDto(friend.user1Id, friend.user2Id);
+                friendsM[ndx] = temp;
+            });
+            friendsM.map((fr) => {
+                this.friendMainTbService.create(fr);
+            });
+        });
     }
 };
 exports.FriendAwaitService = FriendAwaitService;

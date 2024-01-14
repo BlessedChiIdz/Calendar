@@ -17,10 +17,14 @@ const common_1 = require("@nestjs/common");
 const sequelize_1 = require("@nestjs/sequelize");
 const users_model_1 = require("./users.model");
 const roles_service_1 = require("../roles/roles.service");
+const friends_service_1 = require("../friends/friends.service");
+const plans_service_1 = require("../plans/plans.service");
 let UsersService = class UsersService {
-    constructor(userRepository, roleService) {
+    constructor(userRepository, roleService, friendService, plansService) {
         this.userRepository = userRepository;
         this.roleService = roleService;
+        this.friendService = friendService;
+        this.plansService = plansService;
     }
     async createUser(dto) {
         const user = await this.userRepository.create(dto);
@@ -33,8 +37,10 @@ let UsersService = class UsersService {
         const users = await this.userRepository.findAll({ include: { all: true } });
         return users;
     }
+    async getAllUsersByIds(ids) {
+    }
     async getUserByEmail(email) {
-        const user = await this.userRepository.findOne({ where: { email }, include: { all: true } });
+        const user = await this.userRepository.findOne({ rejectOnEmpty: undefined, where: { email }, include: { all: true } });
         return user;
     }
     async addRole(dto) {
@@ -46,11 +52,19 @@ let UsersService = class UsersService {
         }
         throw new common_1.HttpException('User or Role undefined', common_1.HttpStatus.NOT_FOUND);
     }
+    async linkPlanToAllFriends(dto) {
+        const plan = await this.plansService.creatPlan(dto);
+        await dto.users.forEach(function (user) {
+            user.$set('plans', [plan.id]);
+        });
+    }
 };
 exports.UsersService = UsersService;
 exports.UsersService = UsersService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, sequelize_1.InjectModel)(users_model_1.User)),
-    __metadata("design:paramtypes", [Object, roles_service_1.RolesService])
+    __metadata("design:paramtypes", [Object, roles_service_1.RolesService,
+        friends_service_1.FriendsService,
+        plans_service_1.PlansService])
 ], UsersService);
 //# sourceMappingURL=users.service.js.map

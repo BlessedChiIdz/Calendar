@@ -11,8 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Plan = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
+const users_model_1 = require("../users/users.model");
 const swagger_1 = require("@nestjs/swagger");
-const friends_model_1 = require("../friends/friends.model");
 const user_plans_model_1 = require("./user-plans.model");
 let Plan = class Plan extends sequelize_typescript_1.Model {
 };
@@ -33,7 +33,7 @@ __decorate([
     __metadata("design:type", String)
 ], Plan.prototype, "description", void 0);
 __decorate([
-    (0, sequelize_typescript_1.BelongsToMany)(() => friends_model_1.Friends, () => user_plans_model_1.UserPlans),
+    (0, sequelize_typescript_1.BelongsToMany)(() => users_model_1.User, () => user_plans_model_1.UserPlans),
     __metadata("design:type", Array)
 ], Plan.prototype, "users", void 0);
 exports.Plan = Plan = __decorate([

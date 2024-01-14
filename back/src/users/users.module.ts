@@ -19,6 +19,7 @@ import {FriendsModule} from "../friends/friends.module";
       SequelizeModule.forFeature([User,Role,UserRoles,Plan,UserPlans]),
       RolesModule,
       FriendsModule,
+      PlansModule,
       forwardRef(()=>AuthModule)
   ],
     exports:[

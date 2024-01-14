@@ -10,4 +10,5 @@ export class CreateUserDto{
     @IsString({message:'Should be string'})
     @Length(4,16,{message:'password in range 4-16 length'})
     readonly password:string;
+    readonly nickName:string;
 }

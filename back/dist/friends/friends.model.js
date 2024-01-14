@@ -12,8 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Friends = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const sequelize_typescript_1 = require("sequelize-typescript");
-const plans_model_1 = require("../plans/plans.model");
-const user_plans_model_1 = require("../plans/user-plans.model");
 let Friends = class Friends extends sequelize_typescript_1.Model {
 };
 exports.Friends = Friends;
@@ -32,10 +30,6 @@ __decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER, allowNull: false }),
     __metadata("design:type", Number)
 ], Friends.prototype, "user2Id", void 0);
-__decorate([
-    (0, sequelize_typescript_1.BelongsToMany)(() => plans_model_1.Plan, () => user_plans_model_1.UserPlans),
-    __metadata("design:type", Array)
-], Friends.prototype, "plans", void 0);
 exports.Friends = Friends = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: 'Friends', createdAt: false, updatedAt: false })
 ], Friends);

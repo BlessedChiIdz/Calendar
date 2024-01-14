@@ -17,35 +17,49 @@ export class FriendAwaitService {
         return friendW
     }
 
-    async getById(id:number){
-        const friend = await this.friendW.findByPk(id)
-        return friend
-    }
-
-    async delete(idForDel:number):Promise<FriendsDto>{
-        const friend:FriendsDto = await this.getById(idForDel);
-        await this.friendW.destroy({where:{
-            id:idForDel
-            }})
-        return friend
-    }
-
-    async addToMainTB(idForDel:number){
-        const deleted = await this.delete(idForDel)
-        const datas:FriendsDto = {
-            user1Id:deleted.user1Id,
-            user2Id:deleted.user2Id
-        }
-        const friend = await this.friendMainTbService.create(datas)
-        return friend
-    }
-
-    async Get(dto:User1Dto){
-        const friends:FriendsWDto[] = await this.friendW.findAll({
+    async getById(id:number):Promise<FriendsW[]>{
+        const friend = await this.friendW.findAll({
             where:{
-                user1Id:dto.user1Id
+                user1Id:id,
             }
         })
-        return friends
+        return friend
+    }
+
+    async delete(idForDel:number):Promise<FriendsW[]>{
+        const friend:FriendsW[] = await this.getById(idForDel);
+        friend.map((fr)=>{
+            this.friendW.destroy({
+                where:{
+                    id:fr.id
+                }
+            })
+        })
+        return friend
+    }
+
+    async addToMainTBAllAwait(idForDel:number){
+        const deleted:FriendsW[] = await this.delete(idForDel)
+        let friendsM:FriendsWDto[] = [];
+        deleted.forEach(function (friend,ndx){
+            const temp:FriendsWDto = new FriendsWDto(friend.user1Id,friend.user2Id);
+            friendsM[ndx] = temp;
+        })
+        friendsM.map( (fr)=>{
+            this.friendMainTbService.create(fr);
+        })
+    }
+    async addToMainTbSomeUsers(ids:number[]){
+        ids.map(async (id)=>{
+            const deleted:FriendsW[] = await this.delete(id);
+            let friendsM:FriendsWDto[] = [];
+            deleted.forEach(function (friend,ndx){
+                const temp:FriendsWDto = new FriendsWDto(friend.user1Id,friend.user2Id);
+                friendsM[ndx] = temp;
+            })
+            friendsM.map( (fr)=>{
+                this.friendMainTbService.create(fr);
+            })
+        })
     }
 }

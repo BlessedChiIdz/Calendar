@@ -16,7 +16,7 @@ export class UserPlans extends Model<UserPlans>{
     @Column({type:DataType.INTEGER})
     planId:number;
 
-    @ForeignKey(()=>Friends)
+    @ForeignKey(()=>User)
     @Column({type:DataType.INTEGER})
     userId:number;
 

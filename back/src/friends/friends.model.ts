@@ -21,6 +21,5 @@ export class Friends extends Model<Friends,FriendsAttr>{
     @Column({type:DataType.INTEGER,allowNull:false})
     user2Id:number;
 
-    @BelongsToMany(()=>Plan,()=>UserPlans)
-    plans: Plan[];
+
 }

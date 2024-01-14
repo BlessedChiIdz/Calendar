@@ -1,6 +1,6 @@
-import {Body, Controller, Get, Post} from '@nestjs/common';
+import {Body, Controller, Get, Param, ParseArrayPipe, Post} from '@nestjs/common';
 import {FriendAwaitService} from "./friend-await.service";
-import {FriendDeleteDto, FriendsWDto, User1Dto} from "./dto/friends.dto";
+import { FriendDeleteDto, FriendsWDto, User1Dto} from "./dto/friends.dto";
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import {FriendsW} from "./friend-await.model";
 @Controller('friend-await')
@@ -14,14 +14,21 @@ export class FriendAwaitController {
         return this.friendWService.create(dto);
     }
     @ApiOperation({summary:'AddTempFriendToMainFriendTable'})
-    @Post('/addToMainTb')
-    AddToMainTable(@Body() dto:FriendDeleteDto){
-        return this.friendWService.addToMainTB(dto.idForDel)
+    @Post('/addToMainTbAllAwait')
+    AddToMainTableAll(@Body() dto:FriendDeleteDto){
+        return this.friendWService.addToMainTBAllAwait(dto.idForDel)
     }
-    @ApiResponse({status:200,type:FriendsW})
-    @Get('/get')
-    GetRequest(@Body() dto:User1Dto){
-        return this.friendWService.Get(dto)
+    @Post('/addToMainTbSomeAwait')
+    AddToMainTableSome(
+        @Body(new ParseArrayPipe({items: Number,separator:','}))
+        ids:number[],
+    ){
+        return this.friendWService.addToMainTbSomeUsers(ids)
     }
+    @Get('/:num')
+    GetRequest(@Param('num') num:number){
+        return this.friendWService.getById(num)
+    }
+
 
 }

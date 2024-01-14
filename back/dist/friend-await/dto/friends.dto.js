@@ -2,6 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User1Dto = exports.FriendDeleteDto = exports.FriendsWDto = void 0;
 class FriendsWDto {
+    constructor(user1Id, user2Id) {
+        this.user1Id = user1Id;
+        this.user2Id = user2Id;
+    }
 }
 exports.FriendsWDto = FriendsWDto;
 class FriendDeleteDto {

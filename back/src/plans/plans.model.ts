@@ -26,6 +26,6 @@ export class Plan extends Model<Plan,PlansAttrs>{
     @Column({type:DataType.STRING,unique:false})
     description:string;
 
-    @BelongsToMany(()=>Friends,()=>UserPlans)
-    users:Friends[];
+    @BelongsToMany(()=>User,()=>UserPlans)
+    users:User[];
 }

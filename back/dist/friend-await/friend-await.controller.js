@@ -17,7 +17,6 @@ const common_1 = require("@nestjs/common");
 const friend_await_service_1 = require("./friend-await.service");
 const friends_dto_1 = require("./dto/friends.dto");
 const swagger_1 = require("@nestjs/swagger");
-const friend_await_model_1 = require("./friend-await.model");
 let FriendAwaitController = class FriendAwaitController {
     constructor(friendWService) {
         this.friendWService = friendWService;
@@ -25,11 +24,14 @@ let FriendAwaitController = class FriendAwaitController {
     create(dto) {
         return this.friendWService.create(dto);
     }
-    AddToMainTable(dto) {
-        return this.friendWService.addToMainTB(dto.idForDel);
+    AddToMainTableAll(dto) {
+        return this.friendWService.addToMainTBAllAwait(dto.idForDel);
     }
-    GetRequest(dto) {
-        return this.friendWService.Get(dto);
+    AddToMainTableSome(ids) {
+        return this.friendWService.addToMainTbSomeUsers(ids);
+    }
+    GetRequest(num) {
+        return this.friendWService.getById(num);
     }
 };
 exports.FriendAwaitController = FriendAwaitController;
@@ -43,18 +45,24 @@ __decorate([
 ], FriendAwaitController.prototype, "create", null);
 __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'AddTempFriendToMainFriendTable' }),
-    (0, common_1.Post)('/addToMainTb'),
+    (0, common_1.Post)('/addToMainTbAllAwait'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [friends_dto_1.FriendDeleteDto]),
     __metadata("design:returntype", void 0)
-], FriendAwaitController.prototype, "AddToMainTable", null);
+], FriendAwaitController.prototype, "AddToMainTableAll", null);
 __decorate([
-    (0, swagger_1.ApiResponse)({ status: 200, type: friend_await_model_1.FriendsW }),
-    (0, common_1.Get)('/get'),
-    __param(0, (0, common_1.Body)()),
+    (0, common_1.Post)('/addToMainTbSomeAwait'),
+    __param(0, (0, common_1.Body)(new common_1.ParseArrayPipe({ items: Number, separator: ',' }))),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [friends_dto_1.User1Dto]),
+    __metadata("design:paramtypes", [Array]),
+    __metadata("design:returntype", void 0)
+], FriendAwaitController.prototype, "AddToMainTableSome", null);
+__decorate([
+    (0, common_1.Get)('/:num'),
+    __param(0, (0, common_1.Param)('num')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
 ], FriendAwaitController.prototype, "GetRequest", null);
 exports.FriendAwaitController = FriendAwaitController = __decorate([

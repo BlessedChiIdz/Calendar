@@ -5,12 +5,19 @@ import {CreateUserDto} from "./dto/create-user.dto";
 import {RolesService} from "../roles/roles.service";
 import {AddRoleDto} from "./dto/add-role.dto";
 
+import {Friends} from "../friends/friends.model";
+import {LinkPlanDto} from "./dto/link-plan.dto";
+import {FriendsService} from "../friends/friends.service";
+import {PlansService} from "../plans/plans.service";
+
 
 @Injectable()
 export class UsersService {
 
     constructor(@InjectModel(User) private userRepository:typeof User,
                 private roleService:RolesService,
+                private friendService:FriendsService,
+                private plansService:PlansService,
                 ) {
     }
 
@@ -28,8 +35,11 @@ export class UsersService {
         return users;
     }
 
+    async getAllUsersByIds(ids:number[]){
+
+    }
     async getUserByEmail(email:string){
-        const user = await this.userRepository.findOne({where:{email},include:{all:true}})
+        const user = await this.userRepository.findOne({rejectOnEmpty: undefined, where:{email},include:{all:true}})
         return user
     }
 
@@ -43,7 +53,10 @@ export class UsersService {
         throw new HttpException('User or Role undefined',HttpStatus.NOT_FOUND)
     }
 
-
-
-
+    async linkPlanToAllFriends(dto:LinkPlanDto){
+        const plan = await this.plansService.creatPlan(dto);
+        await dto.users.forEach(function (user){
+            user.$set('plans',[plan.id]);
+        })
+    }
 }

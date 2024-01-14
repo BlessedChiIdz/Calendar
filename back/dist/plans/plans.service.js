@@ -16,11 +16,9 @@ exports.PlansService = void 0;
 const common_1 = require("@nestjs/common");
 const sequelize_1 = require("@nestjs/sequelize");
 const plans_model_1 = require("./plans.model");
-const friends_service_1 = require("../friends/friends.service");
 let PlansService = class PlansService {
-    constructor(plansRep, friendService) {
+    constructor(plansRep) {
         this.plansRep = plansRep;
-        this.friendService = friendService;
     }
     async creatPlan(dto) {
         const plan = await this.plansRep.create(dto);
@@ -30,19 +28,11 @@ let PlansService = class PlansService {
         const plans = await this.plansRep.findAll({ where: { value } });
         return plans;
     }
-    async linkPlanToAllFriends(dto) {
-        const plan = await this.creatPlan(dto);
-        const id = dto.id;
-        const friends = await this.friendService.getAll(id);
-        await friends.forEach(function (friend) {
-            friend.$set('plans', [plan.id]);
-        });
-    }
 };
 exports.PlansService = PlansService;
 exports.PlansService = PlansService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, sequelize_1.InjectModel)(plans_model_1.Plan)),
-    __metadata("design:paramtypes", [Object, friends_service_1.FriendsService])
+    __metadata("design:paramtypes", [Object])
 ], PlansService);
 //# sourceMappingURL=plans.service.js.map

@@ -11,8 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserPlans = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
+const users_model_1 = require("../users/users.model");
 const plans_model_1 = require("./plans.model");
-const friends_model_1 = require("../friends/friends.model");
 let UserPlans = class UserPlans extends sequelize_typescript_1.Model {
 };
 exports.UserPlans = UserPlans;
@@ -26,7 +26,7 @@ __decorate([
     __metadata("design:type", Number)
 ], UserPlans.prototype, "planId", void 0);
 __decorate([
-    (0, sequelize_typescript_1.ForeignKey)(() => friends_model_1.Friends),
+    (0, sequelize_typescript_1.ForeignKey)(() => users_model_1.User),
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER }),
     __metadata("design:type", Number)
 ], UserPlans.prototype, "userId", void 0);

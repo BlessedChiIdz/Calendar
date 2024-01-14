@@ -18,6 +18,8 @@ export class User extends Model<User,UserAttrs>{
     @Column({type:DataType.INTEGER,unique:true,autoIncrement:true,primaryKey:true})
     id:number;
 
+    @Column({type:DataType.STRING,unique:false})
+    nickName:string;
     @ApiProperty({example:'usr@gmail.com',description:'Email'})
     @Column({type:DataType.STRING,unique:true,allowNull:false})
     email:string;
@@ -39,5 +41,6 @@ export class User extends Model<User,UserAttrs>{
     @BelongsToMany(()=>Role,()=>UserRoles)
     roles:Role[];
 
-
+    @BelongsToMany(()=>Plan,()=>UserPlans)
+    plans: Plan[];
 }
