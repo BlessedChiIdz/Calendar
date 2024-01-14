@@ -7,6 +7,7 @@ import {Roles} from "../auth/roles-auth.decorators";
 import {RolesGuar} from "../auth/roles.guar";
 import {AddRoleDto} from "./dto/add-role.dto";
 import {ValidationPipe} from "../pipes/validation.pipe";
+import {LinkPlanDto} from "./dto/link-plan.dto";
 
 
 @ApiTags('Users')
@@ -27,8 +28,8 @@ export class UsersController {
 
     @ApiOperation({summary:'GetAllUsers'})
     @ApiResponse({status:200,type: [User]})
-    @Roles("ADMIN")
-    @UseGuards(RolesGuar)
+    //@Roles("ADMIN")
+    //@UseGuards(RolesGuar)
     @Get()
     getAll(){
         return this.usersService.getAllUsers();
@@ -42,5 +43,9 @@ export class UsersController {
         return this.usersService.addRole(dto);
     }
 
+    @Post('/planToAllFr')
+    Link(@Body() dto:LinkPlanDto){
+        return this.usersService.linkPlanToAllFriends(dto);
+    }
 
 }

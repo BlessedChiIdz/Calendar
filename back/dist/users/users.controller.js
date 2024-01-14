@@ -22,6 +22,7 @@ const roles_auth_decorators_1 = require("../auth/roles-auth.decorators");
 const roles_guar_1 = require("../auth/roles.guar");
 const add_role_dto_1 = require("./dto/add-role.dto");
 const validation_pipe_1 = require("../pipes/validation.pipe");
+const link_plan_dto_1 = require("./dto/link-plan.dto");
 let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
@@ -34,6 +35,9 @@ let UsersController = class UsersController {
     }
     addRole(dto) {
         return this.usersService.addRole(dto);
+    }
+    Link(dto) {
+        return this.usersService.linkPlanToAllFriends(dto);
     }
 };
 exports.UsersController = UsersController;
@@ -50,8 +54,6 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'GetAllUsers' }),
     (0, swagger_1.ApiResponse)({ status: 200, type: [users_model_1.User] }),
-    (0, roles_auth_decorators_1.Roles)("ADMIN"),
-    (0, common_1.UseGuards)(roles_guar_1.RolesGuar),
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
@@ -68,6 +70,13 @@ __decorate([
     __metadata("design:paramtypes", [add_role_dto_1.AddRoleDto]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "addRole", null);
+__decorate([
+    (0, common_1.Post)('/planToAllFr'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [link_plan_dto_1.LinkPlanDto]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "Link", null);
 exports.UsersController = UsersController = __decorate([
     (0, swagger_1.ApiTags)('Users'),
     (0, common_1.Controller)('users'),
