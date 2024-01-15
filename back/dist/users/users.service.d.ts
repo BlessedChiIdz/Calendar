@@ -15,6 +15,7 @@ export declare class UsersService {
     getAllUsers(): Promise<User[]>;
     getAllUsersByIds(ids: number[]): Promise<void>;
     getUserByEmail(email: string): Promise<User>;
+    getUserById(id: number): Promise<User>;
     addRole(dto: AddRoleDto): Promise<AddRoleDto>;
-    linkPlanToAllFriends(dto: LinkPlanDto): Promise<void>;
+    linkPlanToFriends(dto: LinkPlanDto): Promise<void>;
 }

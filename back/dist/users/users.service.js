@@ -43,6 +43,10 @@ let UsersService = class UsersService {
         const user = await this.userRepository.findOne({ rejectOnEmpty: undefined, where: { email }, include: { all: true } });
         return user;
     }
+    async getUserById(id) {
+        const user = await this.userRepository.findByPk(id);
+        return user;
+    }
     async addRole(dto) {
         const user = await this.userRepository.findByPk(dto.userId);
         const role = await this.roleService.getRoleByValue(dto.value);
@@ -52,10 +56,11 @@ let UsersService = class UsersService {
         }
         throw new common_1.HttpException('User or Role undefined', common_1.HttpStatus.NOT_FOUND);
     }
-    async linkPlanToAllFriends(dto) {
+    async linkPlanToFriends(dto) {
         const plan = await this.plansService.creatPlan(dto);
-        await dto.users.forEach(function (user) {
-            user.$set('plans', [plan.id]);
+        dto.usersId.map(async (id) => {
+            const user = await this.getUserById(id);
+            user.$set('plans', plan);
         });
     }
 };

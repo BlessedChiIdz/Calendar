@@ -45,7 +45,7 @@ export class UsersController {
 
     @Post('/planToAllFr')
     Link(@Body() dto:LinkPlanDto){
-        return this.usersService.linkPlanToAllFriends(dto);
+        return this.usersService.linkPlanToFriends(dto);
     }
 
 }

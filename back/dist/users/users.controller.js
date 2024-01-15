@@ -37,7 +37,7 @@ let UsersController = class UsersController {
         return this.usersService.addRole(dto);
     }
     Link(dto) {
-        return this.usersService.linkPlanToAllFriends(dto);
+        return this.usersService.linkPlanToFriends(dto);
     }
 };
 exports.UsersController = UsersController;
