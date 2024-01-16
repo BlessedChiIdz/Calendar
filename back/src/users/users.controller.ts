@@ -43,7 +43,7 @@ export class UsersController {
         return this.usersService.addRole(dto);
     }
 
-    @Post('/planToAllFr')
+    @Post('/planToFr')
     Link(@Body() dto:LinkPlanDto){
         return this.usersService.linkPlanToFriends(dto);
     }

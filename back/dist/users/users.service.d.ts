@@ -18,4 +18,5 @@ export declare class UsersService {
     getUserById(id: number): Promise<User>;
     addRole(dto: AddRoleDto): Promise<AddRoleDto>;
     linkPlanToFriends(dto: LinkPlanDto): Promise<void>;
+    linkCreatedPlan(id: number): Promise<void>;
 }

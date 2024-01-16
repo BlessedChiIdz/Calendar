@@ -62,8 +62,9 @@ export class UsersService {
             const user = await this.getUserById(id);
             user.$set('plans',plan)
         })
-        // await dto.users.forEach(function (user){
-        //     user.$set('plans',[plan.id]);
-        // })
+    }
+    async linkCreatedPlan(id:number){
+        const user = await this.userRepository.findByPk(id);
+        const plans = user.plans;
     }
 }

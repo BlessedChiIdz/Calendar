@@ -71,7 +71,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "addRole", null);
 __decorate([
-    (0, common_1.Post)('/planToAllFr'),
+    (0, common_1.Post)('/planToFr'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [link_plan_dto_1.LinkPlanDto]),

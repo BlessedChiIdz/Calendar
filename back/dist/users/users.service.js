@@ -63,6 +63,10 @@ let UsersService = class UsersService {
             user.$set('plans', plan);
         });
     }
+    async linkCreatedPlan(id) {
+        const user = await this.userRepository.findByPk(id);
+        const plans = user.plans;
+    }
 };
 exports.UsersService = UsersService;
 exports.UsersService = UsersService = __decorate([
