@@ -1,28 +1,30 @@
 import {UserM} from "../../models/UserM";
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-interface userSInterface {
+interface UserState {
     users:UserM[];
     isLoad:boolean;
     error:string;
+
 }
 
-const initialState : userSInterface = {
+const initialState : UserState = {
     users:[],
     isLoad:false,
-    error: ''
+    error: '',
+
 }
 
-export const usersSlice = createSlice({
-    name:'users',
-    initialState:initialState,
+export const userSlice = createSlice({
+    name:'user',
+    initialState,
     reducers: {
-        inc:(state)=>{
+        increment:(state)=>{
             state.isLoad = true;
         }
     },
 })
 
-export default usersSlice.reducer;
+export default userSlice.reducer;
 
 

@@ -1,13 +1,15 @@
 import React from 'react';
 import Header from "../Components/Modal/Header";
 import "../styles/mainPage.css"
-import {useAppSelector} from "../hooks/reduxHooks";
+import {useAppDispatch, useAppSelector} from "../hooks/reduxHooks";
+import {userSlice} from "../store/slices/userSlice";
+import {useDispatch} from "react-redux";
 
 
 
 
 const MainPage = () => {
-     const {} = useAppSelector(state => state.userReducer.error)
+
     return (
         <div className="mainPageRoot">
             <Header/>
