@@ -7,19 +7,22 @@ interface userSInterface {
     error:string;
 }
 
-const initialState: userSInterface={
+const initialState : userSInterface = {
     users:[],
     isLoad:false,
     error: ''
 }
 
-export const userSlice = createSlice({
-    name:'user',
-    initialState,
-    reducers:{
-
-    }
+export const usersSlice = createSlice({
+    name:'users',
+    initialState:initialState,
+    reducers: {
+        inc:(state)=>{
+            state.isLoad = true;
+        }
+    },
 })
-export default userSlice.reducer;
+
+export default usersSlice.reducer;
 
 

@@ -4,16 +4,18 @@ import userReducer from './slices/userSlice'
 
 
 
+
+
 export const rootReducer = combineReducers({
     userReducer
 })
 
 export const setupStore = () =>{
     return configureStore({
-        reducer:rootReducer
+        reducer:rootReducer,
     })
 }
 
-export type  rootState = ReturnType<typeof rootReducer>
-export type appStore = ReturnType<typeof setupStore>
-export type appDispatch = appStore['dispatch']
+export type  RootState = ReturnType<typeof rootReducer>
+export type AppStore = ReturnType<typeof setupStore>
+export type AppDispatch = AppStore['dispatch']

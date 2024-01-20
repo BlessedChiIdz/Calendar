@@ -1,12 +1,17 @@
 import React from 'react';
-import Calendar from "../Components/Calendar";
+import Header from "../Components/Modal/Header";
+import "../styles/mainPage.css"
+import {useAppSelector} from "../hooks/reduxHooks";
+
 
 
 
 const MainPage = () => {
+     const {} = useAppSelector(state => state.userReducer.error)
     return (
-        <div>
-            <Calendar/>
+        <div className="mainPageRoot">
+            <Header/>
+
         </div>
     );
 };

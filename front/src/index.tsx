@@ -10,6 +10,8 @@ import {setupStore} from "./store";
 
 
 
+
+const store = setupStore()
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
@@ -18,7 +20,7 @@ root.render(
         <DevSupport ComponentPreviews={ComponentPreviews}
                     useInitialHook={useInitial}
         >
-            <Provider store={setupStore()}>
+            <Provider store={store}>
                 <App/>
             </Provider>
         </DevSupport>
