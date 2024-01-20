@@ -1,1 +1,3 @@
-export const
+export interface qwe{
+    id:number
+}

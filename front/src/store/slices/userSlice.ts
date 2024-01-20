@@ -1,26 +1,25 @@
+import {UserM} from "../../models/UserM";
 import {createSlice} from "@reduxjs/toolkit";
 
 interface userSInterface {
-    value:number;
+    users:UserM[];
+    isLoad:boolean;
+    error:string;
 }
 
-const initialState = {
-    value: 0
-} as userSInterface
+const initialState: userSInterface={
+    users:[],
+    isLoad:false,
+    error: ''
+}
 
-const userSlice = createSlice({
-    name: 'user',
+export const userSlice = createSlice({
+    name:'user',
     initialState,
     reducers:{
-        inc: state =>{
-            state.value+=1;
-        },
-        dec: state=>{
-            state.value-=1;
-        }
+
     }
 })
-
-export const {inc,dec} = userSlice.actions;
-
 export default userSlice.reducer;
+
+
