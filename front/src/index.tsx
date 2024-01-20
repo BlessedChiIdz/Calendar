@@ -5,7 +5,7 @@ import {DevSupport} from "@react-buddy/ide-toolbox";
 import {ComponentPreviews, useInitial} from "./dev";
 import "./index.css"
 import {Provider} from "react-redux";
-import {store} from "./store";
+
 
 
 
@@ -17,9 +17,10 @@ root.render(
         <DevSupport ComponentPreviews={ComponentPreviews}
                     useInitialHook={useInitial}
         >
-            <Provider store={store}>
+            <Provider store={}>
                 <App/>
             </Provider>
         </DevSupport>
     </React.StrictMode>
+
 );
