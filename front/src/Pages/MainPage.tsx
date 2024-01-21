@@ -11,13 +11,15 @@ import {fetchUsers} from "../store/reducers/ActionCreator";
 
 const MainPage = () => {
     const dispatch = useAppDispatch()
-    const {users} = useAppSelector(state => state.userReducer)
+    const {users,isLoad,error} = useAppSelector(state => state.userReducer)
     useEffect(()=>{
         dispatch(fetchUsers())
     },[])
     return (
         <div className="mainPageRoot">
             <Header/>
+            {isLoad && <h1>Loading</h1>}
+            {error && <h1>{error}</h1>}
             {JSON.stringify(users,null,2)}
         </div>
     );
