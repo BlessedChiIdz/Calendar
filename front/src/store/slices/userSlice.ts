@@ -19,9 +19,20 @@ export const userSlice = createSlice({
     name:'user',
     initialState,
     reducers: {
-        increment:(state)=>{
+        userFetching:(state)=>{
             state.isLoad = true;
-        }
+        },
+
+        userFetchingSuccess:(state,action:PayloadAction<UserM[]>)=>{
+            state.isLoad = true;
+            state.error = ''
+            state.users = action.payload;
+        },
+
+        userFetchingErr:(state,action:PayloadAction<string>)=>{
+            state.isLoad = false;
+            state.error = action.payload;
+        },
     },
 })
 
