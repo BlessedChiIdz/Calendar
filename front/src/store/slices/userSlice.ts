@@ -19,48 +19,35 @@ const initialState : UserState = {
 export const userSlice = createSlice({
     name:'user',
     initialState,
+    reducers:(create) =>({
 
-    reducers: {
-        userFetching:(state)=>{
-            state.isLoad = true;
-        },
+    })
 
-        userFetchingSuccess:(state,action:PayloadAction<UserM[]>)=>{
-            state.isLoad = false;
-            state.error = ''
-            state.users = action.payload;
-        },
 
-        userFetchingErr:(state,action:PayloadAction<string>)=>{
-            state.isLoad = false;
-            state.error = action.payload;
-        },
-    },
-    // extraReducers:{
-    //     [fetchUsers.fulfilled.type]: (state,action:PayloadAction<UserM[]>)=>{
+    // name:'user',
+    // initialState,
+    // selectors:{
+    //     selectDef: state=>state,
+    // },
+    //
+    // reducers: (create) => ({
+    //     userFetching: create.reducer((state)=>{
+    //         state.isLoad = true;
+    //     }),
+    //
+    //     userFetchingSuccess: create.reducer((state,action:PayloadAction<UserM[]>)=>{
     //         state.isLoad = false;
     //         state.error = ''
     //         state.users = action.payload;
-    //     },
-    //     [fetchUsers.pending.type]: (state)=>{
-    //         state.isLoad = true;
-    //     },
-    //     [fetchUsers.rejected.type]: (state,action:PayloadAction<string>)=>{
+    //     }),
+    //
+    //     userFetchingErr: create.reducer((state,action:PayloadAction<string>)=>{
     //         state.isLoad = false;
     //         state.error = action.payload;
-    //     },
-    //
-    // }
-    extraReducers:(builder)=>{
-        builder.addCase(fetchUsers.fulfilled,(state,action)=>{
-            state.isLoad = false;
-            state.error = ''
-            state.users = action.payload;
-        })
-
-    }
+    //     })
+    // })
 })
-
+export const {selectDef} = userSlice.selectors;
 export default userSlice.reducer;
 
 
