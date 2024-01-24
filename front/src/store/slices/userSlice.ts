@@ -1,8 +1,8 @@
 import {UserM} from "../../models/UserM";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {fetchUsers} from "../reducers/ActionCreator";
+import {fetchUsers} from "../actions/ActionCreator";
 
-interface UserState {
+export interface UserState {
     users:UserM[];
     isLoad:boolean;
     error:string;
@@ -20,47 +20,27 @@ export const userSlice = createSlice({
     name:'user',
     initialState,
 
-    reducers: {
-        userFetching:(state)=>{
-            state.isLoad = true;
-        },
-
-        userFetchingSuccess:(state,action:PayloadAction<UserM[]>)=>{
-            state.isLoad = false;
-            state.error = ''
-            state.users = action.payload;
-        },
-
-        userFetchingErr:(state,action:PayloadAction<string>)=>{
-            state.isLoad = false;
-            state.error = action.payload;
-        },
+    selectors:{
+        selectLoad:(state) => state.isLoad,
     },
-    // extraReducers:{
-    //     [fetchUsers.fulfilled.type]: (state,action:PayloadAction<UserM[]>)=>{
-    //         state.isLoad = false;
-    //         state.error = ''
-    //         state.users = action.payload;
-    //     },
-    //     [fetchUsers.pending.type]: (state)=>{
-    //         state.isLoad = true;
-    //     },
-    //     [fetchUsers.rejected.type]: (state,action:PayloadAction<string>)=>{
-    //         state.isLoad = false;
-    //         state.error = action.payload;
-    //     },
-    //
-    // }
+    reducers: (create)=>({
+        Todo: create.reducer((state,action)=>{
+            state.isLoad = true;
+        })
+    }),
+
     extraReducers:(builder)=>{
         builder.addCase(fetchUsers.fulfilled,(state,action)=>{
             state.isLoad = false;
             state.error = ''
             state.users = action.payload;
         })
-
     }
 })
 
+export const {Todo} = userSlice.actions
+
 export default userSlice.reducer;
+
 
 

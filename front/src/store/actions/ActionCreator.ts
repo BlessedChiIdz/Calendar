@@ -18,7 +18,8 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 
 export const fetchUsers = createAsyncThunk(
     'user/fetchAll',
-    async (_,thunkAPI) =>{
+    async (_,thunkAPIm) =>{
+
         const response = await axios.get<UserM[]>('https://jsonplaceholder.typicode.com/users')
         return response.data;
     }
