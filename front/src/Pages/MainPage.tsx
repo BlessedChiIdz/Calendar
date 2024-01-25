@@ -24,9 +24,7 @@ const MainPage = () => {
 // };
     const dispatch = useAppDispatch()
 
-    // const {} = useGet
 
-    //const {user:UserState} = useSelector(selectAll);
 
     const {users,isLoad,error} = useAppSelector(state => state.userReducer)
     console.log(isLoad)
